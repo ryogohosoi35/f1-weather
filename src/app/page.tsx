@@ -3,7 +3,7 @@ import { GPWeatherCard } from '@/components/features/weather/gp-weather-card';
 import { getWeatherForecast } from '@/lib/utils/weather-api';
 import { getNextGrandPrix, getUpcomingGrandPrix } from '@/lib/utils/grandprix';
 import { LoadingCard } from '@/components/common/loading-card';
-import { Zap, Calendar, TrendingUp, Heart, ExternalLink, Twitter } from 'lucide-react';
+import { Calendar, TrendingUp } from 'lucide-react';
 
 async function NextRaceSection() {
   const nextGP = getNextGrandPrix();
