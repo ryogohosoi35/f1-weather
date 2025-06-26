@@ -1,11 +1,10 @@
 'use server';
 
-import { GrandPrix, GPWeatherForecast, SearchFilters } from '@/lib/types';
+import { GPWeatherForecast, SearchFilters } from '@/lib/types';
 import { getWeatherForecast, getHistoricalWeather } from '@/lib/utils/weather-api';
 import { 
   getNextGrandPrix, 
   getUpcomingGrandPrix, 
-  getPastGrandPrix,
   searchGrandPrix,
   getGrandPrixById
 } from '@/lib/utils/grandprix';
@@ -19,7 +18,8 @@ export async function getNextRaceWeather(): Promise<GPWeatherForecast | null> {
     const weather = await getWeatherForecast(
       nextGP.location.latitude,
       nextGP.location.longitude,
-      7 // 7日間の予報
+      nextGP.dateStart,
+      nextGP.dateEnd
     );
 
     return {
@@ -42,7 +42,8 @@ export async function getUpcomingRacesWeather(count: number = 5): Promise<GPWeat
         const weather = await getWeatherForecast(
           gp.location.latitude,
           gp.location.longitude,
-          3 // 3日間の予報で十分
+          gp.dateStart,
+          gp.dateEnd
         );
 
         return {
@@ -88,7 +89,8 @@ export async function getGrandPrixWeather(id: string): Promise<GPWeatherForecast
       weather = await getWeatherForecast(
         gp.location.latitude,
         gp.location.longitude,
-        7
+        gp.dateStart,
+        gp.dateEnd
       );
     } else {
       // 過去のレース：過去データを取得
@@ -129,7 +131,8 @@ export async function searchGrandPrixWeather(filters: SearchFilters): Promise<GP
           weather = await getWeatherForecast(
             gp.location.latitude,
             gp.location.longitude,
-            3
+            gp.dateStart,
+            gp.dateEnd
           );
         } else {
           weather = await getHistoricalWeather(

@@ -147,7 +147,6 @@ export function GPWeatherCard({
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {weekendWeather.map((day, index) => {
                   if (!day) return null;
-                  const dayCondition = getWeatherCondition(day.weatherCode);
                   const date = parseISO(day.date);
                   
                   const dayNames = ['金曜日 (FP)', '土曜日 (予選)', '日曜日 (決勝)'];
