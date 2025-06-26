@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description: "Formula 1グランプリ開催地の天気予報を美しいビジュアルでお届け。レースウィークエンドの準備に最適な情報をリアルタイムで提供します。",
   keywords: "F1, Formula 1, 天気予報, weather, forecast, グランプリ, Grand Prix, レース, race",
   authors: [{ name: "F1天気予報" }],
+  verification: {
+    google: "nGfAM9a8ubXmxiIz5ytMmrQFlGzYbPnNsrDtnHOfmZg",
+  },
 };
 
 export const viewport: Viewport = {
