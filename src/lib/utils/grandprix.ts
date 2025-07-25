@@ -2,30 +2,16 @@ import { GrandPrix, SearchFilters } from '@/lib/types';
 import { GRANDPRIX_2024 } from '@/data/grandprix-2024';
 import { GRANDPRIX_2025 } from '@/data/grandprix-2025';
 import { isAfter, isBefore, parseISO, startOfDay } from 'date-fns';
+import { getCurrentJstDate } from '@/lib/utils/date';
 
 const ALL_GRAND_PRIX = [...GRANDPRIX_2024, ...GRANDPRIX_2025];
-
-// --- 日付シミュレーション ---
-// ユーザーの要求に応じて現在日付を2025/06/26に設定
-const SIMULATED_DATE = '2025-06-26T12:00:00+09:00'; 
-// -------------------------
-
-function getJstNow(): Date {
-  // シミュレーション日付が設定されている場合はそれを使用
-  if (process.env.NODE_ENV === 'development' && SIMULATED_DATE) {
-    return new Date(SIMULATED_DATE);
-  }
-  const now = new Date();
-  const jstOffset = 9 * 60; // JSTはUTC+9時間
-  return new Date(now.getTime() + (jstOffset + now.getTimezoneOffset()) * 60000);
-}
 
 export function getAllGrandPrix(): GrandPrix[] {
   return ALL_GRAND_PRIX;
 }
 
 export function getNextGrandPrix(): GrandPrix | null {
-  const now = startOfDay(getJstNow());
+  const now = startOfDay(getCurrentJstDate());
   
   const upcoming = ALL_GRAND_PRIX
     .filter(gp => isAfter(parseISO(gp.dateStart), now) || isAfter(parseISO(gp.dateEnd), now))
@@ -35,7 +21,7 @@ export function getNextGrandPrix(): GrandPrix | null {
 }
 
 export function getUpcomingGrandPrix(count: number = 5): GrandPrix[] {
-  const now = startOfDay(getJstNow());
+  const now = startOfDay(getCurrentJstDate());
   
   return ALL_GRAND_PRIX
     .filter(gp => isAfter(parseISO(gp.dateStart), now) || isAfter(parseISO(gp.dateEnd), now))
@@ -44,7 +30,7 @@ export function getUpcomingGrandPrix(count: number = 5): GrandPrix[] {
 }
 
 export function getPastGrandPrix(): GrandPrix[] {
-  const now = startOfDay(getJstNow());
+  const now = startOfDay(getCurrentJstDate());
   
   return ALL_GRAND_PRIX
     .filter(gp => isBefore(parseISO(gp.dateEnd), now))

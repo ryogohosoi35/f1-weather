@@ -1,5 +1,6 @@
 import { WeatherData } from '@/lib/types';
 import { differenceInDays, parseISO, startOfDay } from 'date-fns';
+import { getCurrentJstDate } from '@/lib/utils/date';
 
 interface OpenMeteoResponse {
   latitude: number;
