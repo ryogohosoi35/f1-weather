@@ -1,5 +1,6 @@
 import { WeatherData } from '@/lib/types';
 import { differenceInDays, parseISO, startOfDay } from 'date-fns';
+import { getCurrentJstDate } from '@/lib/utils/date';
 
 interface OpenMeteoResponse {
   latitude: number;
@@ -57,7 +58,7 @@ export async function getWeatherForecast(
 ): Promise<WeatherData[]> {
   // Open-Meteo forecast API is limited to about 16 days
   const forecastLimitInDays = 15;
-  const now = startOfDay(new Date());
+  const now = startOfDay(getCurrentJstDate());
   const raceStartDate = startOfDay(parseISO(startDate));
 
   if (differenceInDays(raceStartDate, now) > forecastLimitInDays) {
