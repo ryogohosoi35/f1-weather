@@ -14,7 +14,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-03-14',
     dateEnd: '2025-03-16',
     round: 1,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-03-14T01:30:00Z',
+      fp2: '2025-03-14T05:00:00Z',
+      fp3: '2025-03-15T01:30:00Z',
+      qualifying: '2025-03-15T05:00:00Z',
+      race: '2025-03-16T04:00:00Z'
+    }
   },
   {
     id: 'china-2025',
@@ -29,7 +36,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-03-21',
     dateEnd: '2025-03-23',
     round: 2,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-03-21T03:30:00Z',
+      sprintQualifying: '2025-03-21T07:30:00Z',
+      sprint: '2025-03-22T03:00:00Z',
+      qualifying: '2025-03-22T07:00:00Z',
+      race: '2025-03-23T07:00:00Z'
+    }
   },
   {
     id: 'japan-2025',
@@ -44,7 +58,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-04-04',
     dateEnd: '2025-04-06',
     round: 3,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-04-04T02:30:00Z',
+      fp2: '2025-04-04T06:00:00Z',
+      fp3: '2025-04-05T02:30:00Z',
+      qualifying: '2025-04-05T06:00:00Z',
+      race: '2025-04-06T05:00:00Z'
+    }
   },
   {
     id: 'bahrain-2025',
@@ -59,7 +80,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-04-11',
     dateEnd: '2025-04-13',
     round: 4,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-04-11T11:30:00Z',
+      fp2: '2025-04-11T15:00:00Z',
+      fp3: '2025-04-12T12:30:00Z',
+      qualifying: '2025-04-12T16:00:00Z',
+      race: '2025-04-13T15:00:00Z'
+    }
   },
   {
     id: 'saudi-arabia-2025',
@@ -74,7 +102,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-04-18',
     dateEnd: '2025-04-20',
     round: 5,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-04-18T13:30:00Z',
+      fp2: '2025-04-18T17:00:00Z',
+      fp3: '2025-04-19T13:30:00Z',
+      qualifying: '2025-04-19T17:00:00Z',
+      race: '2025-04-20T17:00:00Z'
+    }
   },
   {
     id: 'miami-2025',
@@ -89,7 +124,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-05-02',
     dateEnd: '2025-05-04',
     round: 6,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-05-02T16:30:00Z',
+      sprintQualifying: '2025-05-02T20:30:00Z',
+      sprint: '2025-05-03T16:00:00Z',
+      qualifying: '2025-05-03T20:00:00Z',
+      race: '2025-05-04T20:00:00Z'
+    }
   },
   {
     id: 'emilia-romagna-2025',
@@ -104,7 +146,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-05-16',
     dateEnd: '2025-05-18',
     round: 7,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-05-16T11:30:00Z',
+      fp2: '2025-05-16T15:00:00Z',
+      fp3: '2025-05-17T10:30:00Z',
+      qualifying: '2025-05-17T14:00:00Z',
+      race: '2025-05-18T13:00:00Z'
+    }
   },
   {
     id: 'monaco-2025',
@@ -119,7 +168,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-05-23',
     dateEnd: '2025-05-25',
     round: 8,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-05-23T11:30:00Z',
+      fp2: '2025-05-23T15:00:00Z',
+      fp3: '2025-05-24T10:30:00Z',
+      qualifying: '2025-05-24T14:00:00Z',
+      race: '2025-05-25T13:00:00Z'
+    }
   },
   {
     id: 'spain-2025',
@@ -134,7 +190,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-05-30',
     dateEnd: '2025-06-01',
     round: 9,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-05-30T11:30:00Z',
+      fp2: '2025-05-30T15:00:00Z',
+      fp3: '2025-05-31T10:30:00Z',
+      qualifying: '2025-05-31T14:00:00Z',
+      race: '2025-06-01T13:00:00Z'
+    }
   },
   {
     id: 'canada-2025',
@@ -149,7 +212,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-06-13',
     dateEnd: '2025-06-15',
     round: 10,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-06-13T17:30:00Z',
+      fp2: '2025-06-13T21:00:00Z',
+      fp3: '2025-06-14T16:30:00Z',
+      qualifying: '2025-06-14T20:00:00Z',
+      race: '2025-06-15T18:00:00Z'
+    }
   },
   {
     id: 'austria-2025',
@@ -164,7 +234,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-06-27',
     dateEnd: '2025-06-29',
     round: 11,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-06-27T11:30:00Z',
+      fp2: '2025-06-27T15:00:00Z',
+      fp3: '2025-06-28T10:30:00Z',
+      qualifying: '2025-06-28T14:00:00Z',
+      race: '2025-06-29T13:00:00Z'
+    }
   },
   {
     id: 'great-britain-2025',
@@ -179,7 +256,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-07-04',
     dateEnd: '2025-07-06',
     round: 12,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-07-04T11:30:00Z',
+      fp2: '2025-07-04T15:00:00Z',
+      fp3: '2025-07-05T10:30:00Z',
+      qualifying: '2025-07-05T14:00:00Z',
+      race: '2025-07-06T14:00:00Z'
+    }
   },
   {
     id: 'belgium-2025',
@@ -194,7 +278,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-07-25',
     dateEnd: '2025-07-27',
     round: 13,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-07-25T10:30:00Z',
+      sprintQualifying: '2025-07-25T14:30:00Z',
+      sprint: '2025-07-26T10:00:00Z',
+      qualifying: '2025-07-26T14:00:00Z',
+      race: '2025-07-27T13:00:00Z'
+    }
   },
   {
     id: 'hungary-2025',
@@ -209,7 +300,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-08-01',
     dateEnd: '2025-08-03',
     round: 14,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-08-01T11:30:00Z',
+      fp2: '2025-08-01T15:00:00Z',
+      fp3: '2025-08-02T10:30:00Z',
+      qualifying: '2025-08-02T14:00:00Z',
+      race: '2025-08-03T13:00:00Z'
+    }
   },
   {
     id: 'netherlands-2025',
@@ -224,7 +322,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-08-29',
     dateEnd: '2025-08-31',
     round: 15,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-08-29T10:30:00Z',
+      fp2: '2025-08-29T14:00:00Z',
+      fp3: '2025-08-30T09:30:00Z',
+      qualifying: '2025-08-30T13:00:00Z',
+      race: '2025-08-31T13:00:00Z'
+    }
   },
   {
     id: 'italy-2025',
@@ -239,7 +344,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-09-05',
     dateEnd: '2025-09-07',
     round: 16,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-09-05T11:30:00Z',
+      fp2: '2025-09-05T15:00:00Z',
+      fp3: '2025-09-06T10:30:00Z',
+      qualifying: '2025-09-06T14:00:00Z',
+      race: '2025-09-07T13:00:00Z'
+    }
   },
   {
     id: 'azerbaijan-2025',
@@ -254,7 +366,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-09-19',
     dateEnd: '2025-09-21',
     round: 17,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-09-19T08:30:00Z',
+      fp2: '2025-09-19T12:00:00Z',
+      fp3: '2025-09-20T08:30:00Z',
+      qualifying: '2025-09-20T12:00:00Z',
+      race: '2025-09-21T11:00:00Z'
+    }
   },
   {
     id: 'singapore-2025',
@@ -269,7 +388,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-10-03',
     dateEnd: '2025-10-05',
     round: 18,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-10-03T09:30:00Z',
+      fp2: '2025-10-03T13:00:00Z',
+      fp3: '2025-10-04T09:30:00Z',
+      qualifying: '2025-10-04T13:00:00Z',
+      race: '2025-10-05T12:00:00Z'
+    }
   },
   {
     id: 'united-states-2025',
@@ -284,7 +410,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-10-17',
     dateEnd: '2025-10-19',
     round: 19,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-10-17T17:30:00Z',
+      sprintQualifying: '2025-10-17T21:30:00Z',
+      sprint: '2025-10-18T17:00:00Z',
+      qualifying: '2025-10-18T21:00:00Z',
+      race: '2025-10-19T19:00:00Z'
+    }
   },
   {
     id: 'mexico-2025',
@@ -299,7 +432,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-10-24',
     dateEnd: '2025-10-26',
     round: 20,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-10-24T18:30:00Z',
+      fp2: '2025-10-24T22:00:00Z',
+      fp3: '2025-10-25T17:30:00Z',
+      qualifying: '2025-10-25T21:00:00Z',
+      race: '2025-10-26T19:00:00Z'
+    }
   },
   {
     id: 'brazil-2025',
@@ -314,7 +454,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-11-07',
     dateEnd: '2025-11-09',
     round: 21,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-11-07T14:30:00Z',
+      sprintQualifying: '2025-11-07T18:30:00Z',
+      sprint: '2025-11-08T14:00:00Z',
+      qualifying: '2025-11-08T18:00:00Z',
+      race: '2025-11-09T17:00:00Z'
+    }
   },
   {
     id: 'las-vegas-2025',
@@ -329,7 +476,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-11-20',
     dateEnd: '2025-11-22',
     round: 22,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-11-21T00:30:00Z',
+      fp2: '2025-11-21T04:00:00Z',
+      fp3: '2025-11-22T00:30:00Z',
+      qualifying: '2025-11-22T04:00:00Z',
+      race: '2025-11-23T04:00:00Z'
+    }
   },
   {
     id: 'qatar-2025',
@@ -344,7 +498,14 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-11-28',
     dateEnd: '2025-11-30',
     round: 23,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-11-28T13:30:00Z',
+      sprintQualifying: '2025-11-28T17:30:00Z',
+      sprint: '2025-11-29T14:00:00Z',
+      qualifying: '2025-11-29T18:00:00Z',
+      race: '2025-11-30T16:00:00Z'
+    }
   },
   {
     id: 'abu-dhabi-2025',
@@ -359,6 +520,13 @@ export const GRANDPRIX_2025: GrandPrix[] = [
     dateStart: '2025-12-05',
     dateEnd: '2025-12-07',
     round: 24,
-    season: 2025
+    season: 2025,
+    sessions: {
+      fp1: '2025-12-05T09:30:00Z',
+      fp2: '2025-12-05T13:00:00Z',
+      fp3: '2025-12-06T10:30:00Z',
+      qualifying: '2025-12-06T14:00:00Z',
+      race: '2025-12-07T13:00:00Z'
+    }
   }
-]; 
+];

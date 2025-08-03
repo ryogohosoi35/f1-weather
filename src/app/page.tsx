@@ -1,14 +1,13 @@
 import { Suspense } from 'react';
 import { GPWeatherCard } from '@/components/features/weather/gp-weather-card';
-import { getWeatherForecast } from '@/lib/utils/weather-api';
-import { getNextGrandPrix, getUpcomingGrandPrix } from '@/lib/utils/grandprix';
+import { getNextRaceWeather, getUpcomingRacesWeather } from '@/lib/actions/weather';
 import { LoadingCard } from '@/components/common/loading-card';
 import { Calendar, TrendingUp } from 'lucide-react';
 
 async function NextRaceSection() {
-  const nextGP = getNextGrandPrix();
+  const nextRaceWeather = await getNextRaceWeather();
   
-  if (!nextGP) {
+  if (!nextRaceWeather) {
     return (
       <div className="text-center py-12">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full mb-4">
@@ -21,19 +20,12 @@ async function NextRaceSection() {
     );
   }
 
-  const weather = await getWeatherForecast(
-    nextGP.location.latitude,
-    nextGP.location.longitude,
-    nextGP.dateStart,
-    nextGP.dateEnd
-  );
-
   return (
     <section>
       <div className="max-w-4xl mx-auto">
         <GPWeatherCard 
-          grandPrix={nextGP} 
-          weather={weather} 
+          grandPrix={nextRaceWeather.grandPrix} 
+          sessionWeather={nextRaceWeather.sessionWeather} 
           variant="featured"
           className="shadow-2xl"
         />
@@ -43,9 +35,9 @@ async function NextRaceSection() {
 }
 
 async function UpcomingRacesSection() {
-  const upcomingGPs = getUpcomingGrandPrix(3);
+  const upcomingRacesWeather = await getUpcomingRacesWeather(3);
   
-  if (upcomingGPs.length === 0) {
+  if (upcomingRacesWeather.length === 0) {
     return (
       <div className="text-center py-8">
         <TrendingUp className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
@@ -55,17 +47,6 @@ async function UpcomingRacesSection() {
       </div>
     );
   }
-
-  const weatherPromises = upcomingGPs.map(gp =>
-    getWeatherForecast(
-      gp.location.latitude,
-      gp.location.longitude,
-      gp.dateStart,
-      gp.dateEnd
-    )
-  );
-  
-  const weatherResults = await Promise.all(weatherPromises);
 
   return (
     <section className="space-y-6">
@@ -83,11 +64,11 @@ async function UpcomingRacesSection() {
       </div>
 
       <div className="grid gap-8">
-        {upcomingGPs.map((gp, index) => (
+        {upcomingRacesWeather.map((raceWeather) => (
           <GPWeatherCard
-            key={gp.id}
-            grandPrix={gp}
-            weather={weatherResults[index]}
+            key={raceWeather.grandPrix.id}
+            grandPrix={raceWeather.grandPrix}
+            sessionWeather={raceWeather.sessionWeather}
             variant="compact"
             className="f1-card-hover"
           />

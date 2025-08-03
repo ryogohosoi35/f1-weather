@@ -12,6 +12,22 @@ export interface GrandPrix {
   dateEnd: string; // ISO date string
   round: number;
   season: number;
+  sessions: {
+    fp1: string;
+    fp2?: string;
+    fp3?: string;
+    sprintQualifying?: string;
+    qualifying: string;
+    sprint?: string;
+    race: string;
+  };
+}
+
+export interface HourlyWeatherData {
+  time: string;
+  temperature: number;
+  precipitationProbability: number;
+  weatherCode: number;
 }
 
 export interface WeatherData {
@@ -25,6 +41,7 @@ export interface WeatherData {
   weatherCode: number; // Open-Meteo weather code
   windSpeed?: number;
   humidity?: number;
+  hourly?: HourlyWeatherData[];
 }
 
 export interface WeatherCondition {
@@ -34,9 +51,15 @@ export interface WeatherCondition {
   icon: string;
 }
 
+export interface SessionWeather {
+  session: keyof GrandPrix['sessions'];
+  time: string;
+  weather: HourlyWeatherData | null;
+}
+
 export interface GPWeatherForecast {
   grandPrix: GrandPrix;
-  weather: WeatherData[];
+  sessionWeather: SessionWeather[];
   lastUpdated: string; // ISO date string
 }
 
@@ -44,4 +67,4 @@ export interface SearchFilters {
   year?: number;
   country?: string;
   searchTerm?: string;
-} 
+}
