@@ -1,40 +1,38 @@
 import { GrandPrix, SearchFilters } from '@/lib/types';
-import { GRANDPRIX_2024 } from '@/data/grandprix-2024';
 import { GRANDPRIX_2025 } from '@/data/grandprix-2025';
-import { isAfter, isBefore, parseISO, startOfDay } from 'date-fns';
-import { getCurrentJstDate } from '@/lib/utils/date';
+import { isAfter, isBefore, parseISO } from 'date-fns';
 
-const ALL_GRAND_PRIX = [...GRANDPRIX_2024, ...GRANDPRIX_2025];
+const ALL_GRAND_PRIX = [...GRANDPRIX_2025];
 
 export function getAllGrandPrix(): GrandPrix[] {
   return ALL_GRAND_PRIX;
 }
 
 export function getNextGrandPrix(): GrandPrix | null {
-  const now = startOfDay(getCurrentJstDate());
+  const now = new Date();
   
   const upcoming = ALL_GRAND_PRIX
-    .filter(gp => isAfter(parseISO(gp.dateStart), now) || isAfter(parseISO(gp.dateEnd), now))
-    .sort((a, b) => parseISO(a.dateStart).getTime() - parseISO(b.dateStart).getTime());
+    .filter(gp => isAfter(parseISO(gp.sessions.race), now))
+    .sort((a, b) => parseISO(a.sessions.race).getTime() - parseISO(b.sessions.race).getTime());
   
   return upcoming[0] || null;
 }
 
 export function getUpcomingGrandPrix(count: number = 5): GrandPrix[] {
-  const now = startOfDay(getCurrentJstDate());
+  const now = new Date();
   
   return ALL_GRAND_PRIX
-    .filter(gp => isAfter(parseISO(gp.dateStart), now) || isAfter(parseISO(gp.dateEnd), now))
-    .sort((a, b) => parseISO(a.dateStart).getTime() - parseISO(b.dateStart).getTime())
-    .slice(1, count + 1); // 次回以降のレースを取得するためslice(1, ...)に変更
+    .filter(gp => isAfter(parseISO(gp.sessions.race), now))
+    .sort((a, b) => parseISO(a.sessions.race).getTime() - parseISO(b.sessions.race).getTime())
+    .slice(1, count + 1);
 }
 
 export function getPastGrandPrix(): GrandPrix[] {
-  const now = startOfDay(getCurrentJstDate());
+  const now = new Date();
   
   return ALL_GRAND_PRIX
-    .filter(gp => isBefore(parseISO(gp.dateEnd), now))
-    .sort((a, b) => parseISO(b.dateStart).getTime() - parseISO(a.dateStart).getTime());
+    .filter(gp => isBefore(parseISO(gp.sessions.race), now))
+    .sort((a, b) => parseISO(b.sessions.race).getTime() - parseISO(a.sessions.race).getTime());
 }
 
 export function getGrandPrixById(id: string): GrandPrix | null {
@@ -95,4 +93,4 @@ export function formatGrandPrixDateRange(gp: GrandPrix): string {
   const endStr = endDate.toLocaleDateString('ja-JP', yearFormatOptions);
 
   return `${startStr} - ${endStr}`;
-} 
+}
