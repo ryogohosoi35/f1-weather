@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { WeatherIcon } from '@/components/common/weather-icon';
@@ -7,6 +9,8 @@ import { formatGrandPrixDateRange } from '@/lib/utils/grandprix';
 import { CalendarDays, MapPin, Thermometer, CloudRain, Trophy, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { format, parseISO } from 'date-fns';
+import { formatInTimeZone } from 'date-fns-tz';
+import { useEffect, useState } from 'react';
 
 interface GPWeatherCardProps {
   grandPrix: GrandPrix;
@@ -31,6 +35,11 @@ export function GPWeatherCard({
   variant = 'compact',
   className 
 }: GPWeatherCardProps) {
+  const [timeZone, setTimeZone] = useState('UTC');
+
+  useEffect(() => {
+    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  }, []);
   const raceSession = sessionWeather.find(s => s.session === 'race');
   const isForecastAvailable = !!raceSession && !!raceSession.weather;
   const condition = isForecastAvailable ? getWeatherCondition(raceSession.weather!.weatherCode) : null;
@@ -155,6 +164,9 @@ export function GPWeatherCard({
                   if (!session.weather) return null;
                   const date = parseISO(session.time);
                   const info = sessionDisplayInfo[session.session];
+                  const formattedTime = timeZone === 'Asia/Tokyo' 
+                    ? formatInTimeZone(date, 'Asia/Tokyo', 'HH:mm')
+                    : format(date, 'HH:mm');
 
                   return (
                     <div 
@@ -177,7 +189,8 @@ export function GPWeatherCard({
                               {info.name}
                             </div>
                             <div className='text-xs text-muted-foreground font-medium'>
-                              {format(date, 'HH:mm')}
+                              {formattedTime}
+                              {timeZone === 'Asia/Tokyo' && <span className="text-[10px] ml-1">JST</span>}
                             </div>
                           </div>
                           <div className="flex items-center justify-between text-xs mt-1">
