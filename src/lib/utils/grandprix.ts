@@ -1,6 +1,6 @@
 import { GrandPrix, SearchFilters } from '@/lib/types';
 import { GRANDPRIX_2025 } from '@/data/grandprix-2025';
-import { isAfter, isBefore, parseISO } from 'date-fns';
+import { isAfter, isBefore, parseISO, addDays } from 'date-fns';
 
 const ALL_GRAND_PRIX = [...GRANDPRIX_2025];
 
@@ -12,7 +12,7 @@ export function getNextGrandPrix(): GrandPrix | null {
   const now = new Date();
   
   const upcoming = ALL_GRAND_PRIX
-    .filter(gp => isAfter(parseISO(gp.sessions.race), now))
+    .filter(gp => isAfter(parseISO(gp.sessions.race), addDays(now, -1)))
     .sort((a, b) => parseISO(a.sessions.race).getTime() - parseISO(b.sessions.race).getTime());
   
   return upcoming[0] || null;
@@ -22,7 +22,7 @@ export function getUpcomingGrandPrix(count: number = 5): GrandPrix[] {
   const now = new Date();
   
   return ALL_GRAND_PRIX
-    .filter(gp => isAfter(parseISO(gp.sessions.race), now))
+    .filter(gp => isAfter(parseISO(gp.sessions.race), addDays(now, -1)))
     .sort((a, b) => parseISO(a.sessions.race).getTime() - parseISO(b.sessions.race).getTime())
     .slice(1, count + 1);
 }
@@ -31,7 +31,7 @@ export function getPastGrandPrix(): GrandPrix[] {
   const now = new Date();
   
   return ALL_GRAND_PRIX
-    .filter(gp => isBefore(parseISO(gp.sessions.race), now))
+    .filter(gp => isBefore(parseISO(gp.sessions.race), addDays(now, -1)))
     .sort((a, b) => parseISO(b.sessions.race).getTime() - parseISO(a.sessions.race).getTime());
 }
 
