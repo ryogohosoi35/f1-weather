@@ -95,11 +95,11 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-slate-50/50 dark:to-slate-900/50">
       <main className="container mx-auto px-4 py-12 space-y-16">
         {/* メインページタイトル - SEO最適化 */}
-        <section className="text-center space-y-4">
+        <section className="sr-only">
           <h1 className="text-4xl md:text-5xl font-bold f1-text-gradient">
             F1天気予報
           </h1>
-          <p className="sr-only">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             次戦レースから今後のグランプリまで、F1全開催サーキットの正確な天気予報をリアルタイムでお届けします。
           </p>
         </section>
