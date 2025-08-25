@@ -93,7 +93,7 @@ function LoadingSection({ title }: { title: string }) {
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-slate-50/50 dark:to-slate-900/50">
-      <main className="container mx-auto px-4 py-4 md:py-12 space-y-16">
+      <main className="container mx-auto px-4 py-1 md:py-12 space-y-16">
         {/* メインページタイトル - SEO最適化 */}
         <section className="sr-only">
           <h1 className="text-4xl md:text-5xl font-bold f1-text-gradient">
