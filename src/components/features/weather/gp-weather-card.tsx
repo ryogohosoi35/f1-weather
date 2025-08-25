@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { WeatherIcon } from '@/components/common/weather-icon';
 import { GrandPrix, SessionWeather } from '@/lib/types';
@@ -71,12 +71,12 @@ export function GPWeatherCard({
               {isFeatured && (
                 <Trophy className="h-5 w-5 text-yellow-500" />
               )}
-              <CardTitle className={cn(
+              <h3 className={cn(
                 'font-bold text-foreground leading-tight',
                 isFeatured ? 'text-2xl md:text-3xl f1-text-gradient' : 'text-lg'
               )}>
                 {grandPrix.name}
-              </CardTitle>
+              </h3>
             </div>
             <p className={cn(
               'text-muted-foreground font-medium',

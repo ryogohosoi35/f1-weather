@@ -17,9 +17,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "F1天気予報 | Formula 1 Weather Forecast",
-  description: "Formula 1グランプリ開催地の天気予報を美しいビジュアルでお届け。レースウィークエンドの準備に最適な情報をリアルタイムで提供します。",
-  keywords: "F1, Formula 1, 天気予報, weather, forecast, グランプリ, Grand Prix, レース, race",
+  title: "F1天気予報 | Formula 1レース開催地の詳細天気情報",
+  description: "F1全レース開催サーキットの天気予報を詳しくお届け。決勝・予選・フリー走行の気温や降水確率をリアルタイムで確認。鈴鹿、モナコ、シルバーストーンなど各グランプリの天候をチェック。",
+  keywords: "F1天気予報, Formula1天気, グランプリ天気, F1サーキット天気, 決勝天気, 予選天気, フリー走行, 鈴鹿天気, モナコGP, シルバーストーン, F1レース天候, 気温, 降水確率, レース予報, サーキット気象, F1ウィークエンド",
   authors: [{ name: "F1天気予報" }],
   verification: {
     google: "nGfAM9a8ubXmxiIz5ytMmrQFlGzYbPnNsrDtnHOfmZg",
@@ -37,8 +37,43 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "F1天気予報",
+    "description": "F1全レース開催サーキットの天気予報を詳しくお届け。決勝・予選・フリー走行の気温や降水確率をリアルタイムで確認。",
+    "url": "https://f1-weather.vercel.app",
+    "inLanguage": "ja",
+    "about": {
+      "@type": "Organization",
+      "name": "Formula 1",
+      "sameAs": "https://www.formula1.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "F1天気予報"
+    },
+    "keywords": ["F1天気予報", "Formula1天気", "グランプリ天気", "F1サーキット天気", "決勝天気", "予選天気"],
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "F1ファン",
+      "geographicArea": {
+        "@type": "Country",
+        "name": "Japan"
+      }
+    }
+  };
+
   return (
     <html lang="ja">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData)
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
