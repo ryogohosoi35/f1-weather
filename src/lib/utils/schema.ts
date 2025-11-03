@@ -44,6 +44,7 @@ interface SportsEventSchema {
  *
  * @param grandPrix - レース情報
  * @param weather - 天気情報（オプショナル）
+ * @param baseUrl - サイトのベースURL（オプショナル、デフォルトは環境変数またはf1weathers.com）
  * @returns SportsEvent構造化データ
  */
 export function createSportsEventSchema(
@@ -52,12 +53,16 @@ export function createSportsEventSchema(
     temperature?: number;
     precipitationProbability?: number;
     conditions?: string;
-  }
+  },
+  baseUrl?: string
 ): SportsEventSchema {
+  // ベースURLの決定：引数 > 環境変数 > デフォルト値
+  const siteUrl = baseUrl || process.env.NEXT_PUBLIC_SITE_URL || 'https://f1weathers.com';
+
   const schema: SportsEventSchema = {
     "@context": "https://schema.org",
     "@type": "SportsEvent",
-    "@id": `https://f1weathers.com/#${grandPrix.id}`,
+    "@id": `${siteUrl}#${grandPrix.id}`,
     "name": grandPrix.name,
     "description": `${grandPrix.name} - ${grandPrix.circuitName}で開催されるFormula 1レース`,
     "startDate": grandPrix.dateStart,
@@ -194,13 +199,17 @@ export function createSportsEventSchema(
  * 複数のレースのSportsEventスキーマをまとめて生成する
  *
  * @param races - レース情報の配列
+ * @param baseUrl - サイトのベースURL（オプショナル、デフォルトは環境変数またはf1weathers.com）
  * @returns EventSeriesとSportsEventの構造化データ
  */
-export function createEventSeriesSchema(races: GrandPrix[]) {
+export function createEventSeriesSchema(races: GrandPrix[], baseUrl?: string) {
+  // ベースURLの決定：引数 > 環境変数 > デフォルト値
+  const siteUrl = baseUrl || process.env.NEXT_PUBLIC_SITE_URL || 'https://f1weathers.com';
+
   return {
     "@context": "https://schema.org",
     "@type": "EventSeries",
-    "@id": "https://f1weathers.com/#f1-2025-season",
+    "@id": `${siteUrl}#f1-2025-season`,
     "name": "Formula 1 2025年シーズン",
     "description": "2025年のFormula 1世界選手権の全レース",
     "startDate": races[0]?.dateStart || "2025-03-14",
@@ -210,6 +219,6 @@ export function createEventSeriesSchema(races: GrandPrix[]) {
       "name": "Formula 1",
       "url": "https://www.formula1.com"
     },
-    "subEvent": races.map(race => createSportsEventSchema(race))
+    "subEvent": races.map(race => createSportsEventSchema(race, undefined, siteUrl))
   };
 }
