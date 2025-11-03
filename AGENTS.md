@@ -32,3 +32,4 @@
 - プロセスやアーキテクチャ判断が更新された際は `AGENTS.md` を即座に改訂し、UTF-8 かつ UNIX 改行を維持します。
 - サイト移行タスクは `docs/02-requirements-addv1.md` と連携し、`https://f1weathers.com` 用のサイトマップ再生成を含めます。
 - リリース前のスモークテストでは `https://f1-weather-two.vercel.app` からの 308 リダイレクトが新ドメインに到達することを必ず確認します。
+- SEO の優先課題は `docs/requirements-addv2.md` に集約しており、OG/Twitterメタタグ整備や構造化データ拡張、サイトマップ動的生成が P0〜P1 として定義されている。着手時は同ドキュメントの更新履歴を必ず確認する。

@@ -24,6 +24,36 @@ export const metadata: Metadata = {
   verification: {
     google: "nGfAM9a8ubXmxiIz5ytMmrQFlGzYbPnNsrDtnHOfmZg",
   },
+  // OGPメタタグ
+  openGraph: {
+    type: 'website',
+    title: 'F1天気予報 | Formula 1レース開催地の詳細天気情報',
+    description: 'F1全レース開催サーキットの天気予報を詳しくお届け。決勝・予選・フリー走行の気温や降水確率をリアルタイムで確認。',
+    url: 'https://f1weathers.com',
+    siteName: 'F1天気予報',
+    images: [
+      {
+        url: 'https://f1weathers.com/og-default.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'F1天気予報 - Formula 1レース開催地の詳細天気情報'
+      }
+    ],
+    locale: 'ja_JP'
+  },
+  // Twitterカード
+  twitter: {
+    card: 'summary_large_image',
+    title: 'F1天気予報 | Formula 1レース開催地の詳細天気情報',
+    description: 'F1全レース開催サーキットの天気予報を詳しくお届け。決勝・予選・フリー走行の気温や降水確率をリアルタイムで確認。',
+    images: ['https://f1weathers.com/og-default.jpg']
+  },
+  // canonical link
+  alternates: {
+    canonical: 'https://f1weathers.com'
+  },
+  // その他のメタデータ
+  metadataBase: new URL('https://f1weathers.com')
 };
 
 export const viewport: Viewport = {
@@ -40,9 +70,10 @@ export default function RootLayout({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": "https://f1weathers.com/#website",
     "name": "F1天気予報",
     "description": "F1全レース開催サーキットの天気予報を詳しくお届け。決勝・予選・フリー走行の気温や降水確率をリアルタイムで確認。",
-    "url": "https://f1-weather.vercel.app",
+    "url": "https://f1weathers.com",
     "inLanguage": "ja",
     "about": {
       "@type": "Organization",
