@@ -13,7 +13,8 @@
 ## 品質・運用タスク
 - [ ] Vitest もしくは Jest を導入し、`src/lib/utils` と `src/lib/actions` の単体テストを作成する。API 呼び出し部はモックを用意し、最低限の回帰テストを整備する。
 - [ ] Lighthouse モバイル向けのスコア計測を行い、レポートと改善案を `docs/performance.md`（新規）にまとめる。特に CLS と TBT のボトルネックを可視化する。
-- [ ] GSC のカバレッジレポート確認と 308 リダイレクト監視をリリースチェックリストに追加する。`docs/02-requirements-addv1.md` と同期する。
+- [ ] GSC のカバレッジレポート確認と 308 リダイレクト監視をリリースチェックリストに追加する。`docs/requirements-addv1.md` と同期する。
+- [ ] テスト駆動開発を実施する際の手順書を整備し、最初のターゲットとして `src/lib/utils` にテスト雛形を追加する計画を作成する。探索・計画・実装の記録は毎回 `docs/` に追記する。
 
 ## 完了済みハイライト
 - [x] Next.js 14（App Router）による基盤構築と Shadcn UI の導入が完了した。
@@ -24,3 +25,7 @@
 - Open-Meteo API: https://open-meteo.com/
 - Shadcn/ui を中心とした UI コンポーネント構成で運用する。
 - Server Components を主体としつつ、インタラクティブな部分のみ Client Components として分離する。
+
+## ドキュメント運用メモ
+- すべての主要な開発作業では Explore-Plan-Code の順序で記録を残し、要点を `AGENTS.md` と該当ドキュメントに反映する。
+- ドメイン移行や SEO 関連の更新を行った際は、`docs/requirements-addv1.md` と `docs/requirements-addv2.md` の差分を確認し、整合性を保つメモを追記する。

@@ -3,6 +3,7 @@ import { GPWeatherCard } from '@/components/features/weather/gp-weather-card';
 import { getNextRaceWeather, getUpcomingRacesWeather } from '@/lib/actions/weather';
 import { LoadingCard } from '@/components/common/loading-card';
 import { Calendar, TrendingUp } from 'lucide-react';
+import { createSportsEventSchema } from '@/lib/utils/schema';
 
 async function NextRaceSection() {
   const nextRaceWeather = await getNextRaceWeather();
@@ -13,24 +14,22 @@ async function NextRaceSection() {
         <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full mb-4">
           <Calendar className="w-8 h-8 text-red-600" />
         </div>
-        <h2 className="text-xl font-semibold text-muted-foreground">
+        <p className="text-xl font-semibold text-muted-foreground">
           現在、開催予定のGPはありません
-        </h2>
+        </p>
       </div>
     );
   }
 
   return (
-    <section>
-      <div className="max-w-4xl mx-auto">
-        <GPWeatherCard 
-          grandPrix={nextRaceWeather.grandPrix} 
-          sessionWeather={nextRaceWeather.sessionWeather} 
-          variant="featured"
-          className="shadow-2xl"
-        />
-      </div>
-    </section>
+    <div className="max-w-4xl mx-auto">
+      <GPWeatherCard
+        grandPrix={nextRaceWeather.grandPrix}
+        sessionWeather={nextRaceWeather.sessionWeather}
+        variant="featured"
+        className="shadow-2xl"
+      />
+    </div>
   );
 }
 
@@ -90,26 +89,74 @@ function LoadingSection({ title }: { title: string }) {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  // SportsEventスキーマ用のデータ取得
+  const nextRaceWeather = await getNextRaceWeather();
+  const upcomingRacesWeather = await getUpcomingRacesWeather(5);
+
+  // 構造化データの生成
+  const structuredDataArray = [];
+
+  if (nextRaceWeather) {
+    const raceSession = nextRaceWeather.sessionWeather?.find(s => s.session === 'race');
+    const weatherInfo = raceSession?.weather;
+    structuredDataArray.push(
+      createSportsEventSchema(
+        nextRaceWeather.grandPrix,
+        weatherInfo ? {
+          temperature: weatherInfo.temperature,
+          precipitationProbability: weatherInfo.precipitationProbability
+        } : undefined
+      )
+    );
+  }
+
+  upcomingRacesWeather.forEach(race => {
+    const raceSession = race.sessionWeather?.find(s => s.session === 'race');
+    const weatherInfo = raceSession?.weather;
+    structuredDataArray.push(
+      createSportsEventSchema(
+        race.grandPrix,
+        weatherInfo ? {
+          temperature: weatherInfo.temperature,
+          precipitationProbability: weatherInfo.precipitationProbability
+        } : undefined
+      )
+    );
+  });
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-slate-50/50 dark:to-slate-900/50">
+      {/* 構造化データの埋め込み */}
+      {structuredDataArray.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredDataArray.length === 1 ? structuredDataArray[0] : structuredDataArray)
+          }}
+        />
+      )}
+
       <main className="container mx-auto px-4 py-0 md:py-12 space-y-16">
-        {/* メインページタイトル - SEO最適化 */}
-        <section className="sr-only">
-          <h1 className="text-4xl md:text-5xl font-bold f1-text-gradient">
+        {/* メインページタイトル - SEO最適化（視覚的には非表示） */}
+        <section>
+          <h1 className="sr-only">
             F1天気予報
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="sr-only">
             次戦レースから今後のグランプリまで、F1全開催サーキットの正確な天気予報をリアルタイムでお届けします。
           </p>
         </section>
 
-        {/* Next Race Section */}
-        <Suspense fallback={<LoadingSection title="次戦レース情報を読み込み中..." />}>
-          <NextRaceSection />
-        </Suspense>
+        {/* Next Race Section - H2で階層化（SEO用・視覚的には非表示） */}
+        <section>
+          <h2 className="sr-only">次戦レース</h2>
+          <Suspense fallback={<LoadingSection title="次戦レース情報を読み込み中..." />}>
+            <NextRaceSection />
+          </Suspense>
+        </section>
 
-        {/* Upcoming Races Section */}
+        {/* Upcoming Races Section - 既存のH2と統合 */}
         <Suspense fallback={<LoadingSection title="今後のレース情報を読み込み中..." />}>
           <UpcomingRacesSection />
         </Suspense>

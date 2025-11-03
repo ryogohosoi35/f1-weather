@@ -24,6 +24,36 @@ export const metadata: Metadata = {
   verification: {
     google: "nGfAM9a8ubXmxiIz5ytMmrQFlGzYbPnNsrDtnHOfmZg",
   },
+  // OGPメタタグ
+  openGraph: {
+    type: 'website',
+    title: 'F1天気予報 | Formula 1レース開催地の詳細天気情報',
+    description: 'F1全レース開催サーキットの天気予報を詳しくお届け。決勝・予選・フリー走行の気温や降水確率をリアルタイムで確認。',
+    url: '/',
+    siteName: 'F1天気予報',
+    images: [
+      {
+        url: '/og-default.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'F1天気予報 - Formula 1レース開催地の詳細天気情報'
+      }
+    ],
+    locale: 'ja_JP'
+  },
+  // Twitterカード
+  twitter: {
+    card: 'summary_large_image',
+    title: 'F1天気予報 | Formula 1レース開催地の詳細天気情報',
+    description: 'F1全レース開催サーキットの天気予報を詳しくお届け。決勝・予選・フリー走行の気温や降水確率をリアルタイムで確認。',
+    images: ['/og-default.jpg']
+  },
+  // canonical link
+  alternates: {
+    canonical: '/'
+  },
+  // その他のメタデータ
+  metadataBase: new URL('https://f1weathers.com')
 };
 
 export const viewport: Viewport = {
@@ -37,12 +67,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // metadataBaseの値を使用して構造化データのURLを構築
+  // ビルド時に環境変数から取得、デフォルトはmetadata.metadataBaseの値を使用
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || metadata.metadataBase?.toString() || 'https://f1weathers.com';
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteUrl}#website`,
     "name": "F1天気予報",
     "description": "F1全レース開催サーキットの天気予報を詳しくお届け。決勝・予選・フリー走行の気温や降水確率をリアルタイムで確認。",
-    "url": "https://f1-weather.vercel.app",
+    "url": siteUrl,
     "inLanguage": "ja",
     "about": {
       "@type": "Organization",
