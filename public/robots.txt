@@ -1,0 +1,8 @@
+# robots.txt for https://f1weathers.com
+# すべての検索エンジンクローラーに対してサイト全体のクロールを許可
+
+User-agent: *
+Allow: /
+
+# サイトマップの場所を明示
+Sitemap: https://f1weathers.com/sitemap.xml
