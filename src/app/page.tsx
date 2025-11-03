@@ -138,19 +138,19 @@ export default async function Home() {
       )}
 
       <main className="container mx-auto px-4 py-0 md:py-12 space-y-16">
-        {/* メインページタイトル - SEO最適化 */}
-        <section className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold f1-text-gradient mb-4">
+        {/* メインページタイトル - SEO最適化（視覚的には非表示） */}
+        <section>
+          <h1 className="sr-only">
             F1天気予報
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          <p className="sr-only">
             次戦レースから今後のグランプリまで、F1全開催サーキットの正確な天気予報をリアルタイムでお届けします。
           </p>
         </section>
 
-        {/* Next Race Section - H2で階層化 */}
+        {/* Next Race Section - H2で階層化（SEO用・視覚的には非表示） */}
         <section>
-          <h2 className="text-3xl font-bold text-center mb-8">次戦レース</h2>
+          <h2 className="sr-only">次戦レース</h2>
           <Suspense fallback={<LoadingSection title="次戦レース情報を読み込み中..." />}>
             <NextRaceSection />
           </Suspense>
