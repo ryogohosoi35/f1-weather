@@ -159,7 +159,7 @@ export function createSportsEventSchema(
   const schema: SportsEventSchema = {
     "@context": "https://schema.org",
     "@type": "SportsEvent",
-    "@id": `${siteUrl}#${grandPrix.id}`,
+    "@id": eventAnchorUrl,
     "name": grandPrix.name,
     "description": `${grandPrix.name} - ${grandPrix.circuitName}で開催されるFormula 1レース`,
     "startDate": grandPrix.dateStart,
@@ -273,11 +273,12 @@ export function createSportsEventSchema(
 export function createEventSeriesSchema(races: GrandPrix[], baseUrl?: string) {
   // ベースURLの決定：引数 > 環境変数 > デフォルト値
   const siteUrl = baseUrl || process.env.NEXT_PUBLIC_SITE_URL || 'https://f1weathers.com';
+  const normalizedSiteUrl = normalizeSiteUrl(siteUrl);
 
   return {
     "@context": "https://schema.org",
     "@type": "EventSeries",
-    "@id": `${siteUrl}#f1-2025-season`,
+    "@id": `${normalizedSiteUrl}#f1-2025-season`,
     "name": "Formula 1 2025年シーズン",
     "description": "2025年のFormula 1世界選手権の全レース",
     "startDate": races[0]?.dateStart || "2025-03-14",
