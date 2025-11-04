@@ -288,6 +288,6 @@ export function createEventSeriesSchema(races: GrandPrix[], baseUrl?: string) {
       "name": "Formula 1",
       "url": "https://www.formula1.com"
     },
-    "subEvent": races.map(race => createSportsEventSchema(race, undefined, siteUrl))
+    "subEvent": races.map(race => createSportsEventSchema(race, undefined, normalizedSiteUrl))
   };
 }
