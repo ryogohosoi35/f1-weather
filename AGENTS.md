@@ -39,3 +39,4 @@
 - サイト移行タスクは `docs/requirements-addv1.md` と連携し、`https://f1weathers.com` 用のサイトマップ再生成と Google Search Console 設定の履歴を併記します。
 - リリース前のスモークテストでは `https://f1-weather-two.vercel.app` からの 308 リダイレクトが新ドメインに到達することを必ず確認します。
 - SEO の優先課題は `docs/requirements-addv2.md` に集約しており、OG と Twitter のメタタグ整備や構造化データ拡張、サイトマップ動的生成が P0〜P1 として定義されています。取り組む際は同ドキュメントの更新履歴を確認し、最新状況を記載します。
+- 2025-11-04 構造化データの SportsEvent スキーマに `image`・`offers`・`performer`・`eventAttendanceMode` を追加し、各セッションの `endDate` を概算で補完する実装方針を確立。`tests/createSportsEventSchema.test.ts` と `tsconfig.schema-test.json` を利用して `npx tsc -p tsconfig.schema-test.json` で型検証を行い、`node tmp-tests/tests/createSportsEventSchema.test.js` でロジックを手動検証する。生成される `offers.url` はサイト内のクエリパラメータ付きページを指し、URLが有効であることを確認してから本番公開する。
