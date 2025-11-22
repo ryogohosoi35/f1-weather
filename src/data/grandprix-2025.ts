@@ -473,8 +473,8 @@ export const GRANDPRIX_2025: GrandPrix[] = [
       latitude: 36.1147,
       longitude: -115.1728
     },
-    dateStart: '2025-11-20',
-    dateEnd: '2025-11-22',
+    dateStart: '2025-11-21',
+    dateEnd: '2025-11-23',
     round: 22,
     season: 2025,
     sessions: {
